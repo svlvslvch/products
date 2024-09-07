@@ -1,13 +1,15 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
+import { getBaseUrl } from '@config/api.config';
+
 import { IProduct } from '@shared/types/product/product.types';
 
 export const useGetProduct = (initialData: IProduct, id: number) => {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
   const { data, error, isLoading } = useSWR<IProduct>(
-    `https://fakestoreapi.com/products/${id}`,
+    getBaseUrl(`/products/${id}`),
     fetcher,
     { fallbackData: initialData }
   );

@@ -1,5 +1,7 @@
 import { Metadata, NextPage } from 'next';
 
+import { getBaseUrl } from '@config/api.config';
+
 import { ProductForm } from '@modules/Product';
 
 import { IPageParams } from '@shared/types';
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const ProductEditPage: NextPage<IPageParams> = async ({ params }) => {
-  const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+  const res = await fetch(getBaseUrl(`/products/${params.id}`));
   const product = (await res.json()) as IProduct;
 
   return (

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import useSWRMutation from 'swr/mutation';
 
+import { getBaseUrl } from '@config/api.config';
+
 import { IProductForm } from '@shared/types/product/product.types';
 
 export const useMutationProduct = (id?: number) => {
@@ -11,7 +13,7 @@ export const useMutationProduct = (id?: number) => {
     axios.patch(url, arg).then((res) => res.data);
 
   const { trigger, isMutating } = useSWRMutation(
-    `https://fakestoreapi.com/products/${id ? id : ''}`,
+    getBaseUrl(`/products/${id ? id : ''}`),
     id ? patchFetcher : postFetcher
   );
 

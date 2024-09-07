@@ -42,10 +42,6 @@ const ProductForm: FC<IProductFormProps> = (props) => {
   });
 
   const onSubmit: SubmitHandler<IProductForm> = async (formData) => {
-    if (!form.formState.isDirty) {
-      return;
-    }
-
     const sendData = formData;
 
     try {
