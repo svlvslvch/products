@@ -128,7 +128,7 @@ const ProductForm: FC<IProductFormProps> = (props) => {
               <FormItem>
                 <FormLabel>{'Цена товара'}</FormLabel>
                 <FormControl>
-                  <Input inputMode="numeric" placeholder="Цена" {...field} />
+                  <Input type="number" placeholder="Цена" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
