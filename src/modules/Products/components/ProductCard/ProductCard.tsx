@@ -9,7 +9,7 @@ import ProductDeleteModal from '@components/Modals/ProductDeleteModal/ProductDel
 import { IProductCardProps } from './ProductCard.props';
 
 const ProductCard: FC<IProductCardProps> = (props) => {
-  const { product } = props;
+  const { product, onUpdateProducts } = props;
 
   return (
     <div className="ProductCard group relative">
@@ -42,6 +42,7 @@ const ProductCard: FC<IProductCardProps> = (props) => {
         classNameBtn="absolute bottom-2 right-2"
         productId={product.id}
         productName={product.title}
+        onApproved={onUpdateProducts}
       />
     </div>
   );

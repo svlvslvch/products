@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'fakestoreapi.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.freepik.com',
+      },
     ],
   },
   async redirects() {

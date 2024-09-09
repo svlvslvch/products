@@ -3,6 +3,9 @@
 import { FC } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import find from 'lodash/find';
+
+import { getLocalStore } from '@utils/localStorage/localStorage';
 
 import { useMutationProduct } from '@hooks/products/useMutationProduct';
 
@@ -27,12 +30,17 @@ import { IProductFormProps } from './ProductForm.props';
 const ProductForm: FC<IProductFormProps> = (props) => {
   const { description = '', id, price, title = '' } = props;
 
+  // TODO: Костыль
+  const product = find(getLocalStore('products'), (p) => {
+    return p.id === id;
+  });
+
   const { push } = useRouter();
 
   const initValues = {
-    description,
-    price,
-    title,
+    description: product?.description || description,
+    price: product?.price || price,
+    title: product?.title || title,
   };
 
   const { trigger, isMutating } = useMutationProduct(id);

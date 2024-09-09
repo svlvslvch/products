@@ -3,6 +3,9 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import find from 'lodash/find';
+
+import { getLocalStore } from '@utils/localStorage/localStorage';
 
 import { useGetProduct } from '@hooks/products/useGetProduct';
 
@@ -13,7 +16,16 @@ import { IProductProps } from './Product.props';
 const Product: FC<IProductProps> = (props) => {
   const { id, initialData } = props;
 
-  const { product, isLoading } = useGetProduct(initialData, id);
+  const { product: _product, isLoading } = useGetProduct(initialData, id);
+
+  // TODO: костыль
+  let product = _product;
+  const products = getLocalStore('products');
+  if (products?.length) {
+    product = find(products, (product) => {
+      return product.id === id;
+    });
+  }
 
   return (
     <>

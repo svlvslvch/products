@@ -1,4 +1,5 @@
 import { Metadata, NextPage } from 'next';
+import { notFound } from 'next/navigation';
 
 import { getBaseUrl } from '@config/api.config';
 
@@ -12,10 +13,14 @@ export const metadata: Metadata = {
 };
 
 const ProductPage: NextPage<IPageParams> = async ({ params }) => {
-  const res = await fetch(getBaseUrl(`/products/${params.id}`));
-  const initialData = await res.json();
+  try {
+    const res = await fetch(getBaseUrl(`/products/${params.id}`));
+    const initialData = await res.json();
 
-  return <Product id={Number(params.id)} initialData={initialData} />;
+    return <Product id={Number(params.id)} initialData={initialData} />;
+  } catch (err) {
+    notFound();
+  }
 };
 
 export default ProductPage;

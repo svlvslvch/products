@@ -25,6 +25,7 @@
       "@shared/*": ["./src/shared/*"],
       "@ui/*": ["./src/ui/*"],
       "@lib/*": ["./src/lib/*"],
+      "@utils/*": ["./src/utils/*"],
       "@png/*": ["./public/png/*"]
     }
   },
