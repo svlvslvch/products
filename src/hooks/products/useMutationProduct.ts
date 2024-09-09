@@ -17,7 +17,7 @@ export const useMutationProduct = (id?: number) => {
       ...products,
       {
         ...arg,
-        id: products.length + 1,
+        id: products[products.length - 1].id + 1,
         rating: { rate: 0, count: 0 },
         image:
           'https://img.freepik.com/free-photo/deliveryman-with-cap-holding-cardboard-box_1156-612.jpg?t=st=1725839836~exp=1725843436~hmac=e2c4402c914fa97eb24c20e97d006a7b9b07a6eca741b4b50e37ceb61198d868&w=1380',
